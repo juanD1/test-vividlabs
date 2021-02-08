@@ -2,6 +2,7 @@ import * as actionTypes from "./constants";
 import {
   LoginRequestAction,
   LoginSuccessAction,
+  UpdateSuccessAction,
   SecurityState,
   SecurityAction,
   SecurityActionError,
@@ -21,6 +22,7 @@ const SecurityReducer = (
     | SecurityAction
     | LoginRequestAction
     | LoginSuccessAction
+    | UpdateSuccessAction
     | SecurityActionError
 ) => {
   switch (action.type) {
@@ -45,6 +47,19 @@ const SecurityReducer = (
         errorMessage: (action as SecurityActionError).response,
       };
     }
+    case actionTypes.UPDATE_REQUEST: {
+      return { ...state, securityAction: action.type };
+    }
+    case actionTypes.UPDATE_SUCCESS: {
+      return {
+        ...state,
+        securityAction: action.type,
+        user: {
+          ...state.user,
+          displayName: (action as UpdateSuccessAction).user,
+        },
+      };
+    }
     case actionTypes.LOGOUT_REQUEST: {
       return {
         ...state,
@@ -63,18 +78,6 @@ const SecurityReducer = (
         user: null,
       };
     }
-    // case actionTypes.CREATE_USER_REQUEST: {
-    //   return {...state, securityAction: action.type};
-    // }
-    // case actionTypes.CREATE_USER_SUCCESS: {
-    //   return { ...state, securityAction: action.type };
-    // }
-    // case actionTypes.CREATE_USER_FAILURE: {
-    //   return {...state, securityError: true, securityAction: action.type, errorMessage: (action as SecurityActionError).response};
-    // }
-    // case actionTypes.CLEAR_CREATE_USER_FAILURE: {
-    //   return { ...state, securityError: false, errorMessage: '', securityAction: action.type };
-    // }
     case actionTypes.CLEAR_SECURITY: {
       return { ...defaultState };
     }

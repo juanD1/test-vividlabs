@@ -13,7 +13,7 @@ export const Container = styled.div<ContainerProps>`
 export const CustomInput = styled.input`
   padding: 5px;
   display: block;
-  width: ${(props) => (props.width ? `${props.width}px` : "64vw")};
+  width: ${(props) => (props.width ? `${props.width}px` : "90vw")};
   border: none;
   border-bottom: 1px solid ${(props) => (props.color ? props.color : "#757575")};
   background-color: transparent;

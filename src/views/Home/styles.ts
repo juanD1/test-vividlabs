@@ -1,7 +1,14 @@
 import styled from "styled-components";
 
-export const StyledContainer = styled.div`
-  margin: 16px 24px;
-  justify-items: center;
-  text-align: center;
+type Props = {
+  fontSize?: string;
+  margin?: string;
+  fontWeight?: string;
+};
+
+export const StyledSpan = styled.span<Props>`
+  display: block;
+  font-size: ${(props) => props.fontSize && props.fontSize};
+  margin: ${(props) => props.margin && props.margin};
+  font-weight: ${(props) => props.fontWeight && props.fontWeight};
 `;

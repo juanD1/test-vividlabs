@@ -19,8 +19,6 @@ const AccountManager = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  console.log("authUser AccountManager: ", authUser);
-  // const authUser: CurrentUser = useContext(AuthContext);
   const [open, setOpen] = useState<boolean>(false);
   const ref = useRef();
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { faHome, faList } from "@fortawesome/free-solid-svg-icons";
+import { faHome, faPen } from "@fortawesome/free-solid-svg-icons";
 import AccountManager from "components/AccountManager";
 import Icon from "components/common/Icon";
 import { SecurityState } from "state/security/types";
@@ -30,10 +30,10 @@ const Header: React.FC = () => {
       {authUser.providerId !== "password" && (
         <Icon
           style={{ float: "left", margin: 16 }}
-          icon={faList}
+          icon={faPen}
           color={colors.primary}
           size="lg"
-          onClick={() => history.push("my-orders")}
+          onClick={() => history.push("edit")}
         />
       )}
       <AccountManager />

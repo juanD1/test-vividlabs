@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { colors } from "styles/globalStyles";
 
 type Props = {
+  type?: string;
   disabled?: boolean;
   display?: string;
   margin?: string;

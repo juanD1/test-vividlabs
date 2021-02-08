@@ -3,7 +3,9 @@ import { Container, CustomInput, CustomBar, CustomLabel } from "./styles";
 
 type Props = {
   style?: object;
-  id: string;
+  id?: string;
+  type?: string;
+  name?: string;
   placeholder?: string;
   label: string;
   value: string | null;
@@ -14,6 +16,8 @@ type Props = {
 const Input = ({
   style,
   id,
+  type,
+  name,
   placeholder,
   label,
   value,
@@ -24,6 +28,8 @@ const Input = ({
     <CustomInput
       {...style}
       id={id}
+      type={type}
+      name={name}
       placeholder={placeholder}
       value={value || ""}
       disabled={disabled}
