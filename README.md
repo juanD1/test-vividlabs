@@ -1,83 +1,27 @@
-# MAKE YOUR PIZZA
+# Inicio de session y edicion de usuario
 
-Web Application whitch you as Admin would see your orders and total sellings and you as Costumer can prepare your dream pizza selecting every topping of its, also you will can see all your orders and total price of its.
+Aplicacion web que permite iniciar session mediante tu cuenta de Google y poder editar el nombre de dicho usuario.
 
-### HEY REMEMBER!
-
-For access as costumer you can access with your google account or facebook accout.
-For access as Admin you have to select access by password and sign in using next credential:
-
-- email: adminhabi@pizza.com
-- password: A123456789j\*
-
-### Tools
+### Herramientas
 
 - Firebase Auth (for manage access to web application)
-- Firebase Cloud Firestore (used like db)
 
-### Libraries
+### Librerias
 
-- firebase: manage all about firebase
-- styled-components: stylize components
-- sweetalert2: show feedback modals
+- firebase: plataforma de desarrollo de aplicaciones web (usada para manejo de autenticacion )
+- styled-components: stilizar components
+- Redux:
+- sweetalert2: mostrar modals de feedback
 
-## OMG, HOW TO DO ID?
+## Experiencia.
 
-how to get or generate the name pizza by selected toppings?
+Inicia el proyecto con el pensamiento y la seguridad de que firebase lograria que la experiencia de desarrollo fuera tranquila, ya que los requerimientos lo parecian, pero en el proceso me encontre en situaciones complejas.
 
-well, my fist idea was generate and constant array with some names of pizza and meanwhile select toppings on background by validations get a name of pizza and save on another array, so we has an array with posible names to after find the most repited name on that array, but ... no works :(, so has to found another option.
+1. utilize redux-sagas para manejar los llamados de las funciones de firebase, sin embargo no funcionaba del todo bien, investigue y encontre que existia un paquete llamado redux-sagas-firebase, con esto, comprendi que lo que queria hacer era complicado o simplemente no funcionara ya que, por alguna razon crearon esa libreria (redux-sagas-firebase); sin embargo luego de intentarlo en varias ocaciones logre guardar en el estado global la informacion del usuario logueado.
 
-THIS WORKS...
+2. al editar el usuario, note que eran pocas las propiedades que podia editar sin problema (muy pocas), ya que para editar el usuario, dado que el proceso de login es mediante firebase, es necesario implementar una funcion especifica para editar dicho email y posteriormente activar el nuevo email; crei que el numero telefonico era facil de editar, pero encontre casi el mismo comportamiento descrito anteriormente.
+   Solo el nombre (displayName) y el photoUrl, se podian editar de una forma sencilla, por lo que opte por solo editar el nombre. decision que hace que la UI se vea muy pobre.
 
-show the structure...
+2.1) al editar el nombre y cerrar sesion retorna el nombre original (nombre antes de editar), es como si internamente en firebase no editara el nombre.
 
-Everytime you select a topic sent to function the topic and a boolean value witch represent if the topic was checked or no,
-function witch return the name makes this:
-
-- make a loop for PIZZA_BY_TOPPINGS to get its key
-- validate if PIZZA_BY_TOPPINGS has inside our current selected topic
-
-make two validations...
-
-- if current selected topic exist and is checked sum 1 to second element of PIZZA like this: ["tuna", 1]
-- if current selected topic exist and DOESN't checked substract 1 to second element of PIZZA like this: ["tuna", 0]
-
-continue...
-
--order te array PIZZA putting most highest value in the last position of array
-
-- return the first position of the last element, that is our name pizza!
-
-````json
-let PIZZA = {
-TUNA: ["tuna", 0],
-PEPPERONI: ["pepperoni", 0],
-MEXICAN: ["mexican", 0],
-PORK: ["pork", 0],
-BEEF: ["beef", 0],
-CREOLE: ["creole", 0],
-HAWAIIANA: ["hawaiian", 0],
-MEATS: ["meats", 0],
-CHICKEN_MUSHROOMS: ["chicken with mushrooms", 0],
-CHICKEN: ["chicken", 0],
-MUSHROOMS: ["mushrooms", 0],
-VEGETARIAN: ["vegetarian", 0],
-FROM_HOUSE: ["from house", 0],
-};```
-
-```json
-const PIZZA_BY_TOPPINGS = {
-VEGETARIAN: [TOPPING.MUSHROOMS, TOPPING.OREGANO],
-MEATS: [TOPPING.BEEF, TOPPING.CHICKEN, TOPPING.PORK],
-HAWAIIANA: [TOPPING.PINEAPPLE, TOPPING.HAM],
-CHICKEN_MUSHROOMS: [TOPPING.CHICKEN, TOPPING.MUSHROOMS],
-TUNA: [TOPPING.TUNA],
-CHICKEN: [TOPPING.CHICKEN],
-PEPPERONI: [TOPPING.PEPPERONI],
-PORK: [TOPPING.PORK],
-BEEF: [TOPPING.BEEF],
-HAM: [TOPPING.HAM],
-MEXICAN: [TOPPING.TORTILLA_CHIPS],
-CREOLE: [TOPPING.CORN],
-};
-````
+Estas situaciones me aportaron desarrollando mi resilencia ya que a pesar de estas situaciones di mi mejor version en el desarrollo de esta actividad.
